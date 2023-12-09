@@ -3,31 +3,27 @@
 using namespace std;
 
 int main(){
-    vector<char> r;
-    vector<pair<string, int>> d;
-    int n, t;
-    string s;
+    int n;
+    set<char> d;
+    string s, ms;
+    while (cin >> n){
+        int t = INT_MAX;
+        d.clear();
+        while (n--){
+            cin >> s;
+            for (auto i: s)
+                d.insert(i);
 
-    cin >> n;
-    while (n--){
-        cin >> s;
-        for (auto m:s){
-            if(!count(r.begin(), r.end(), m)){
-                r.push_back(m);
-                t++;
+            int size = d.size();
+            if(size < t){
+                ms = s;
+                t = size;
+            }
+
+            else if (size == t && ms.compare(s) == 1){
+                ms = s;
             }
         }
-
-        if(count(r.begin(), r.end(), ' '))
-            t--;
-
-        auto st = make_pair(s, t);
-        d.push_back(st);
+        cout << ms << '\n';
     }
-
-    sort(d.begin(), d.end(), [](pair<string, int> x, pair<string, int> y){return x.second < y.second;});
-    remove_if(d.begin(), d.end(), [d](pair<string, int> x){return x.second != d[0].second;});
-    sort(d.begin(), d.end(), [](pair<string, int> x, pair<string, int> y){return x.first < y.first;});
-
-    cout << d[0].first << '\n';
 }
