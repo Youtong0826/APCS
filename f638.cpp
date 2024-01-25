@@ -14,34 +14,33 @@ using namespace std;
 const int mx = 5e4+10;
 int n, k, p[mx], pre[mx], suf[mx];
 
-int f(int left, int right, int level){
-    if (right - left < 2 || level > k)
+int f(int l, int r, int t){
+    if (r-l < 2 || t > k)
         return 0;
 
-    pre[left] = 0, suf[right] = 0;
+    pre[l] = 0, suf[r] = 0;
     int delta = 0; //用來存第一次前綴和與後綴和的值
-    for (int i = left+1; i <= right; i++){
+    for (int i = l+1; i <= r; i++){
         delta += p[i-1];
         pre[i] = pre[i-1] + delta;
     }
 
     delta = 0;
-    for (int i = right-1; i >= left; i--){
+    for (int i = r-1; i >= l; i--){
         delta += p[i+1];
         suf[i] = suf[i+1] + delta;
     }
 
-    int mn = INT64_MAX;
-    int mi = 0;
-    for (int i = left+1; i <= right-1; i++){
+    int mid = 0, mn = INT64_MAX;
+    for (int i = l+1; i <= r-1; i++){
         int d = abs(suf[i]-pre[i]);
         if (d < mn){
             mn = d;
-            mi = i; 
+            mid = i; 
         }
     }
     
-    return p[mi] + f(left, mi-1, level+1) + f(mi+1, right, level+1);
+    return p[mid] + f(l, mid-1, t+1) + f(mid+1, r, t+1);
 }
 
 signed main(){

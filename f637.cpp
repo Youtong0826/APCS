@@ -3,7 +3,7 @@ using namespace std;
 
 string s;
 int n, i = -1;
-int f(int level, int area){
+int f(int area){
     i++;
     if (s[i] == '0')
         return 0;
@@ -11,7 +11,7 @@ int f(int level, int area){
     if (s[i] == '1')
         return area;
 
-    return foo(level+1, area/4) + foo(level+1, area/4) + foo(level+1, area/4) + foo(level+1, area/4); 
+    return foo(area/4) + foo(area/4) + foo(area/4) + foo(area/4); 
 }
 
 int main(){
