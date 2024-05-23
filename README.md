@@ -1,4 +1,5 @@
-我寫過的 APCS 的歷屆題目，皆來自 ZeroJudge
+我寫過的 APCS 的歷屆題目，皆來自 ZeroJudge。
+
 以下是程式碼與題解統整，部分題解與題目待補充
 
 |         |  Problem 1          | Problem 2              | Problem 3              | Problem 4              | 題解  |
