@@ -20,6 +20,7 @@ int main(){
     for (auto &e: m){
         cin >> e;
         if (e >= 60)
+
             minX = min(minX, e);
         
         else 
@@ -32,6 +33,7 @@ int main(){
         cout << i << ' ';
 
     cout << '\n';
+
     if (minX == INT_MAX)
         cout << maxY << '\n' << "worst case";
 
@@ -41,3 +43,4 @@ int main(){
     else
         cout << maxY << '\n' << minX << '\n';
 }
+
