@@ -20,7 +20,6 @@ int main(){
     for (auto &e: m){
         cin >> e;
         if (e >= 60)
-
             minX = min(minX, e);
         
         else 
