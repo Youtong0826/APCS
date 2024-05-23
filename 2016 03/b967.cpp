@@ -10,8 +10,6 @@ vector<vector<int>> g;
 int md = -1, mi = -1;
 
 void dfs(int idx, int father, int depth){
-    //cout << idx << ' ' << depth << '\n';
-    //chk[idx] = 1;
     for (auto i: g[idx]){
         if (i != father){
            dfs(i, idx, depth+1);
