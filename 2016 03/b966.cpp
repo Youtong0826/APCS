@@ -1,10 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define pr pair<int, int>
+#define pii pair<int, int>
 #define l first
 #define r second
 
-priority_queue<pr, vector<pr>, greater<pr>> temp;
+priority_queue<pii, vector<pii>, greater<pii>> pq;
 
 int main(){
     ios::sync_with_stdio(0);
@@ -14,18 +14,18 @@ int main(){
     cin >> n;
     while (n--){
         cin >> a >> b;
-        temp.push(make_pair(a, b));
+        pq.push({a, b});
     }
 
-    int max = temp.top().l, result = 0;
-    while(!temp.empty()) {
-        pr cur = temp.top();
-        temp.pop();
-        if (cur.r <= max)
+    int mr = -1, result = 0;
+    while (pq.size()) {
+        pii t = pq.top();
+        pq.pop();
+        if (t.r <= mr )
             continue;
 
-        result += (cur.l <= max)? (cur.r - max): (cur.r - cur.l);
-        max = cur.r;
+        result += (t.l <= mr )? (t.r - mr): (t.r - t.l);
+        mr = t.r;
     }
 
     cout << result << '\n';
