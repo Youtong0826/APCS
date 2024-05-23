@@ -10,42 +10,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+vector<int> m, x, y;
+
 int main(){
     ios::sync_with_stdio(0);
     cin.tie(0);
     int n, xl = -1, yl = -1;
     cin >> n;
-    int m[n], x[n], y[n];
     
-    for (int i = 0; i < n; i++){
-        cin >> m[i];
-        if(m[i] >= 60){
-            xl++;
-            x[xl] = m[i];
-        }
-        else {
-            yl++;
-            y[yl] = m[i];
-        }
+    m.resize(n);
+    for (auto &e: m){
+        cin >> e;
+        if (e >= 60)
+            x.push_back(e);
+        
+        else 
+            y.push_back(e);
     }
 
-    sort(m, m+n);
-    sort(x, x+xl+1);
-    sort(y, y+yl+1);
-
-    int mx = x[0];
-    int my = y[yl];
-
-    for(auto i:m)
+    sort(m.begin(), m.end());
+    sort(x.begin(), x.end());
+    sort(y.begin(), y.end());
+    
+    for(auto i: m)
         cout << i << ' ';
 
     cout << '\n';
-    if(xl == -1)
-        cout << my << '\n' << "worst case";
+    if (x.empty())
+        cout << y.back() << '\n' << "worst case";
 
-    else if(yl == -1)
-        cout << "best case" << '\n' << mx;
+    else if (y.empty())
+        cout << "best case" << '\n' << x[0];
     
     else
-        cout << my << '\n' << mx << '\n';
+        cout << y.back() << '\n' << x[0] << '\n';
 }
