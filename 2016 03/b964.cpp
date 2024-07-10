@@ -1,45 +1,32 @@
-// 第一行為學生人數
-// 第二行為各學生的成績
-//
-// -> 解題思路:
-// 將分數>=60 設為 x 而<60 設為 y
-// 並將其排序 x 找出最小值 y 找出最大值
-// 如果x沒有元素 代表沒有最小的及格成績 即為 wrost case
-// 如果y沒有元素 代表沒有最大的不及格成績 即為 best case
-
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> m;
+int m[21];
 
 int main(){
-    int n, minX = INT_MAX, maxY = INT_MIN;
-    cin >> n;
-    
-    m.resize(n);
-    for (auto &e: m){
-        cin >> e;
-        if (e >= 60)
-            minX = min(minX, e);
+    int n, minX = INT_MAX, maxY = INT_MIN; 
+    // 宣告變數，minX 意旨最低的及格分數，minY 意旨最高的不及格分數
+    cin >> n; // 讀取學生人數
+    for (int i = 0; i < n; i++){
+        cin >> m[i];
+        if (m[i] >= 60) // 如果大於等於 60
+            minX = min(minX, m[i]); // 取較小值
         
-        else 
-            maxY = max(maxY, e);
+        else // 否則
+            maxY = max(maxY, m[i]); // 取較大值
     }
 
-    sort(m.begin(), m.end());
+    sort(m, m+n); // 對 m 由小到大排序
+    for (int i = 0; i < n; i++) // 輸出分數
+        cout << m[i] << ' ';
     
-    for(auto i: m)
-        cout << i << ' ';
-
     cout << '\n';
-
-    if (minX == INT_MAX)
+    if (minX == INT_MAX) // 如果沒有及格的最小值
         cout << maxY << '\n' << "worst case";
 
-    else if (maxY == INT_MIN)
+    else if (maxY == INT_MIN) // 如果沒有不及格的最大值
         cout << "best case" << '\n' << minX;
     
-    else
+    else // 否則輸出及格最小值和不及格最大值
         cout << maxY << '\n' << minX << '\n';
 }
-

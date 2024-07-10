@@ -1,29 +1,33 @@
 #include <bits/stdc++.h>
 #define Youtong ios::sync_with_stdio(0); cin.tie(0)
-#define pii pair<int, string> 
 using namespace std;
 
-priority_queue<pii, vector<pii>, greater<pii>> pq;
-bool mp[27];
+bool mp[1000][27];
 
 int main(){
-    Youtong;
-    int n;
-    string s;
+    // Youtong;
+    int n, count, ans = INT_MAX;
+    string s, ans_str;
     cin >> n;
     for (int i = 0; i < n; i++){
-        memset(mp, 0, sizeof(mp));
         cin >> s;
-        int count = 0;
+        count = 0;
         for (auto c: s){
-            if (!mp[c-'A']){
-                mp[c-'A'] = 1;
+            if (!mp[i][c-'A']){
+                mp[i][c-'A'] = 1;
                 count++;
             }
         }
 
-        pq.push({count, s});
+        if (count < ans) {
+            ans = count, ans_str = s;
+        }
+
+        else if (count == ans) {
+            ans_str = min(ans_str, s);
+        }
+        
     }
 
-    cout << pq.top().second << '\n';
+    cout << ans_str << '\n';
 }
