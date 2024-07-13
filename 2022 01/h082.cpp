@@ -1,71 +1,75 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
+#define LL long long
 
 struct p{
-    int atk;
-    int df;
-    int lives;
-    int number;
+    LL atk;
+    LL def;
+    LL lives;
+    LL idx;
 };
 
 p pl[1005];
-vector<p> que;
-vector<p> lose;
+vector<p> que, lose, win;
+
+void beat(int x, int y) {
+    LL cd = que[y].atk * que[y].def;
+    win.push_back({
+        que[x].atk + cd / (que[x].def * 2),
+        que[x].def + cd / (que[x].atk * 2),
+        que[x].lives,
+        que[x].idx
+    });
+
+    lose.push_back({
+        que[y].atk + que[y].atk / 2,
+        que[y].def + que[y].def / 2,
+        que[y].lives-1,
+        que[y].idx
+    });
+}
 
 signed main(){
-    int n, m;
+    int n, m, s;
     cin >> n >> m;
-    for(int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
         cin >> pl[i].atk;
-    
-    for(int i = 0; i < n; i++)
-        cin >> pl[i].df;
-
-    int s;
-    for(int i = 0; i < n; i++){
+     
+    for (int i = 1; i <= n; i++)
+        cin >> pl[i].def;
+ 
+    for (int i = 0; i < n; i++){
         cin >> s;
-        pl[i].lives = m;
-        pl[i].number = i;
+        pl[s].lives = m;
+        pl[s].idx = s;
         que.push_back(pl[s]);
     }
 
     while (que.size() != 1){
-        for(int i = 0; i < n; i += 2){
-            long long ab = que[i].atk * que[i].df;
-            long long cd = que[i+1].atk * que[i+1].df;
-            if (ab >= cd){
-                que[i].atk += cd/(que[i].df*2);
-                que[i].df += cd/(que[i].atk*2);
-                que[i+1].atk *= 1.5; 
-                que[i+1].df *= 1.5; 
-                que[i+1].lives--;
-                lose.push_back(que[i+1]);
-            }
-            else{
-                que[i+1].atk += ab/(que[i+1].df*2);
-                que[i+1].df += ab/(que[i+1].atk*2);
-                que[i].atk *= 1.5; 
-                que[i].df *= 1.5;
-                que[i].lives--;
-                lose.push_back(que[i]);
-            }
+        for (int i = 1; i < que.size(); i += 2){
+            LL ab = que[i-1].atk * que[i-1].def;
+            LL cd = que[i].atk * que[i].def;
+            if (ab >= cd)
+                beat(i-1, i);
+            
+            else
+                beat(i, i-1);
         }
 
-        for (unsigned i = 0; i < lose.size(); i++){
-            for (unsigned j = 0; j < que.size(); j++){
-                if(lose[i].number == que[j].number)
-                    que.erase(que.begin()+i);
-            }
-        }
+        if (que.size() & 1)
+            win.push_back(que.back());
+        que.clear();
+        
+        for (auto x: win)
+            que.push_back(x);
+        win.clear();
 
-        for (unsigned i = 0; i < lose.size(); i++){
-            if (lose[i].lives)
-                que.push_back(lose[i]);
+        for (auto x: lose){
+            if (x.lives)
+                que.push_back(x);
         }
-
         lose.clear();
     }
     
-    cout << que[0].number+1;
+    cout << que[0].idx;
 }
