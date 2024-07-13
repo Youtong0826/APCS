@@ -1,19 +1,22 @@
 #include <bits/stdc++.h>
 #define pii pair<int, int>
+#define f first 
+#define s second 
 using namespace std;
 
 vector<pii> vt;
+bool cmp(pii a, pii b){
+     return a.f * a.f + a.s * a.s > b.f * b.f + b.s * b.s;
+}
 
 int main(){
-    int n;
+    int n, x, y;
     cin >> n;
-    vt.resize(n);
-    for (auto &[x, y]: vt)
+    for (int i = 0; i < n; i++){
         cin >> x >> y;
+        vt.push_back({x, y});
+    }
 
-    sort(vt.begin(), vt.end(), [](pii a, pii b){
-        return a.first * a.first + a.second * a.second > b.first * b.first + b.second * b.second;
-    });
-    
-    cout << vt[1].first << ' ' << vt[1].second << '\n';
+    sort(vt.begin(), vt.end(), cmp);
+    cout << vt[1].f << ' ' << vt[1].s << '\n';
 }
