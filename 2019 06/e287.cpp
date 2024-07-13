@@ -43,6 +43,7 @@ int main(){
 
         sum += mi;
         vis[mix][miy] = 1;
+        x = mix, y = miy;
     }
     
     cout << sum;
