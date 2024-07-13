@@ -20,7 +20,7 @@ int main(){
     }
     
     int ans = 0;
-    if(count == m)
+    if (count == m)
         ans++;
     
     for (int i = m; i < n; i++){
