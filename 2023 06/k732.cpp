@@ -13,7 +13,6 @@ int main(){
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             cin >> mp[i][j];
-
     for (int i = 0; i < n; i++){
         for (int j = 0; j < m; j++){
             int x = mp[i][j], sum = 0;
@@ -24,7 +23,6 @@ int main(){
                     }
                 }
             }
-
             if (sum % 10 == x){
                 pt.push_back({i, j});
             }
