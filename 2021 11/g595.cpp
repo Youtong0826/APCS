@@ -1,19 +1,23 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int h[100];
+
 int main(){
     int n, m = 0;
     cin >> n;
-    int h[n];
-    for (int i = 0; i < n; i++)
+    for (int i = 1; i <= n; i++)
         cin >> h[i];
 
-    for (int i = 0; i < n-1; i++){
-        if (h[i+1] == 0 && i == n-2)
-            m += h[i];
+    if (!h[1])
+        m += h[2];
 
-        else if (h[i] == 0)
-            m += (i == 0)? h[1]: min(h[i+1], h[i-1]);
+    if (!h[n])
+        m += h[n-1];
+
+    for (int i = 2; i <= n-1; i++){
+        if (h[i] == 0)
+            m += min(h[i+1], h[i-1]);
     }
 
     cout << m;
