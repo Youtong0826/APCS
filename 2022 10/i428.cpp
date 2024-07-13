@@ -12,7 +12,7 @@ int main(){
         y2 = y1;
     
         cin >> x1 >> y1;
-        if(n+1 != dn){
+        if (n+1 != dn){
             a = max(a, abs(x2-x1) + abs(y2-y1));
             b = min(b, abs(x2-x1) + abs(y2-y1));
         }
