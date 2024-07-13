@@ -8,7 +8,7 @@ int main(){
         int m = 1, ta = 0, tb = 0;
         while (m){
             cin >> m;
-            if(m == a)
+            if (m == a)
                 ta++;
 
             else if (m == b)
@@ -16,7 +16,7 @@ int main(){
 
             else if (m == -a)
                 ta--;
-
+                
             else if (m == -b)
                 tb--;
         }
