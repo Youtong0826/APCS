@@ -1,11 +1,9 @@
 #include <bits/stdc++.h>
-#define Youtong ios::sync_with_stdio(0); cin.tie(0)
 using namespace std;
 
 bool mp[1000][27];
 
 int main(){
-    // Youtong;
     int n, count, ans = INT_MAX;
     string s, ans_str;
     cin >> n;
