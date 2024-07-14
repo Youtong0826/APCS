@@ -29,7 +29,6 @@ int main(){
 
     int l = 0, r = 0, len = 0, h = -1, e = -1;
     while (l < v.size() && r < v.size()) {
-        // cout << "continue..." << '\n';
         if (v[l] != k) {
             l++, r++;
             continue;
@@ -39,8 +38,6 @@ int main(){
             l = r;
             continue;
         }
-
-        // cout << l << ' ' << r << '\n';
         
         if (r-l+1 > len) {
             len = r-l+1;
