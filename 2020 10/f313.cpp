@@ -66,4 +66,3 @@ int main(){
 
     cout << nn << '\n' << mn;
 }
-
