@@ -44,8 +44,9 @@ int main(){
             for (int j = 0; j < c; j++){
                 if (map[i][j] != -1){
                     for (int l = 0; l < 4; l++){
-                        if (in(i+dx[l], j+dy[l]) && map[i+dx[l]][j+dy[l]] != -1){
-                            temp[i+dx[l]][j+dy[l]] += map[i][j]/k;
+                        int x = i+dx[l], y = j+dy[l];
+                        if (in(x, y) && map[x][y] != -1){
+                            temp[x][y] += map[i][j]/k;
                             temp[i][j] -= map[i][j]/k;
                         }
                     }
