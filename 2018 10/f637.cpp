@@ -16,7 +16,7 @@ int f(int area){
 
 int main(){
     cin >> s >> n;
-    cout << f(0);
+    cout << f(n*n);
 }
 
 //my 筆記
